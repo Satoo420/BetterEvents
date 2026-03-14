@@ -91,24 +91,14 @@ Der Fokus liegt auf:
 
 ## 🧪 Vorbereitete oder geplante Modi
 
-- Bedwars
-- BlockParty
-- Boatrace
-- Bomberman
-- Fight
-- Frog
-- GlassRunner
-- HorseRace
-- HotPotato
-- Paintball
-- Quake
-- Runner
-- SkyWars
-- SheepWars
-- SpeedBuilders
-- Spleeg
-- TopKiller
-- Tribal
+- Spleef
+- Capture
+- SuMo
+- Parkour
+- Hide and Seek
+- Ampel Phasen Run
+- ....
+
 
 ## 🧰 Verwendete Systeme und Bibliotheken
 
