@@ -391,11 +391,11 @@ Artefakt:
 
 ## 📄 Wichtige Dateien
 
-- [BetterEventsPlugin.java](C:\Users\nick\Documents\New project\src\main\java\de\betterevents\BetterEventsPlugin.java)
-- [EventManager.java](C:\Users\nick\Documents\New project\src\main\java\de\betterevents\event\EventManager.java)
-- [GuiController.java](C:\Users\nick\Documents\New project\src\main\java\de\betterevents\gui\GuiController.java)
-- [config.yml](C:\Users\nick\Documents\New project\src\main\resources\config.yml)
-- [plugin.yml](C:\Users\nick\Documents\New project\src\main\resources\plugin.yml)
+- [BetterEventsPlugin.java]
+- [EventManager.java]
+- [GuiController.java]
+- [config.yml]
+- [plugin.yml]
 
 ---
 
