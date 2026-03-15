@@ -185,7 +185,7 @@ BetterEvents fuehrt Rewards **nicht lokal** auf dem Event-Server aus.
 
 Weitere Infos:
 
-- [BA3 Reward Bridge README](C:\Users\nick\Documents\New project\ba3-reward-bridge\README.md)
+- [BA3 Reward Bridge README]
 
 ---
 
@@ -342,7 +342,7 @@ Die Struktur ist bewusst in **globale Defaults** und **eventbezogene Einzeldatei
 
 Datei:
 
-- [config.yml](C:\Users\nick\Documents\New project\src\main\resources\config.yml)
+- [config.yml]
 
 ### Eventdateien
 
