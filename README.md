@@ -1,155 +1,230 @@
 # BetterEvents
 
-Deutsches Event- und Minigames-Plugin fuer BetterAttack.net. Entwickelt fuer Paper `1.21.x`, Java `21+` und Velocity-Netzwerke mit Ingame-GUI, Event-Editor, Spectator-System und serveruebergreifender Reward-Zustellung.
+<div align="center">
+
+### Premium Event Framework fuer BetterAttack.net
+
+Modulares Minecraft-Eventplugin fuer Paper `1.21.x`, Java `21+` und Velocity-Netzwerke  
+mit Ingame-GUIs, Event-Editor, Spectator-System, Reward-Queue und BetterAttack-Stil.
+
+<p>
+  <img alt="Platform" src="https://img.shields.io/badge/Paper-1.21.x-ff77c8?style=for-the-badge&labelColor=1a1325">
+  <img alt="Java" src="https://img.shields.io/badge/Java-21+-ffb3de?style=for-the-badge&labelColor=1a1325">
+  <img alt="Proxy" src="https://img.shields.io/badge/Velocity-Network-f58bd8?style=for-the-badge&labelColor=1a1325">
+  <img alt="Status" src="https://img.shields.io/badge/Status-Active-ffa7df?style=for-the-badge&labelColor=1a1325">
+</p>
+
+</div>
+
+---
 
 ## 📌 Allgemein
 
 | Bereich | Wert |
 |---|---|
-| 👨‍💻 Autoren | BetterAttack Team |
+| 👨‍💻 Team | BetterAttack Team |
 | 🎮 Netzwerk | BetterAttack.net |
 | 💬 Discord | `discord.gg/betterattack.net` |
 | 🌐 Website | `betterattack.shop` |
 | ⚙️ Plattform | Paper `1.21.x` · Java `21+` |
 | 🌍 Proxy | Velocity |
-| 📦 Softdepend | WorldGuard |
-| 🔌 Integrationen | TAB, PlaceholderAPI, LuckPerms, ExcellentCrates, ItemsAdder |
+| 🧩 Softdepends | WorldGuard, PlaceholderAPI, LuckPerms, TAB, ExcellentCrates, ItemsAdder |
+| 💾 Datenhaltung | YAML + MySQL + HikariCP |
+
+---
 
 ## 🧩 Was ist BetterEvents?
 
-BetterEvents ist das zentrale Event-Plugin fuer euren Event-Server. Teamler koennen Events komplett ingame verwalten, konfigurieren, starten, beobachten und dokumentieren, ohne direkt in Dateien arbeiten zu muessen.
+**BetterEvents** ist das zentrale Event-Framework fuer euren Event-Server.  
+Das Plugin erlaubt Teamlern, Events komplett **ingame** zu erstellen, zu bearbeiten, zu starten, zu beobachten und inklusive Rewards zu dokumentieren, ohne direkt im Dateisystem arbeiten zu muessen.
 
 Der Fokus liegt auf:
 
-- vollstaendiger GUI-Verwaltung
-- deutschen Menues und Texten
-- modularen Event-Konfigurationen pro Spiel
-- sauberem Spectator- und Rollen-Flow
-- Reward-System mit serveruebergreifender Zustellung
-- Event-Logs, Gewinnerhistorie und Preisverwaltung
+- hochwertigen Inventar-GUIs
+- deutscher, einheitlicher BetterAttack-Optik
+- modularen Eventkonfigurationen pro Spielmodus
+- nativen Spectator-, Join-, Leave- und Staff-Flows
+- sauberer Velocity-/MySQL-Reward-Architektur
+- skalierbarer und performanter Serverstruktur
 
-## ✨ Kernfeatures
+---
 
-### 🎛️ Ingame Event-Verwaltung
+## ✨ Hauptfeatures
+
+### 🎛️ Ingame Event Management
 
 - `/betterevents` als zentrales Hauptmenue
-- Event erstellen, bearbeiten, starten und stoppen
+- Event erstellen, bearbeiten, starten, stoppen
 - Eventliste mit Direktaktionen
-- Config-Unterseiten je Modus
-- Werte direkt ueber GUI-Klicks anpassbar
-- deutsche GUI-Texte mit einheitlichem Stil
+- komplette Config-Unterseiten pro Modus
+- Werte direkt per Klick anpassbar
+- Reward-Verwaltung direkt ueber GUI
 
-### 🧱 Modulare Event-Konfiguration
+### 🗂️ Premium Editor-Struktur
 
-- jedes Event liegt als eigene Datei in `plugins/BetterEvents/games/`
-- globale Einstellungen bleiben in `config.yml`
-- getrennte Unterseiten wie:
-  - `locations`
-  - `messages`
-  - `prize`
-  - `commands`
-  - `options`
-  - `values`
-  - `scoreboard`
-  - `kit`
-  - `worldguard`
+Jedes Event ist in saubere Bereiche unterteilt:
+
+- `locations`
+- `messages`
+- `prize`
+- `commands`
+- `options`
+- `values`
+- `scoreboard`
+- `bossbar`
+- `music`
+- `worldguard`
+- `kit` (wenn der Modus Kits benoetigt)
 
 ### 👥 Teamler-Workflow
 
-- Spieler direkt einem Event zuweisen
-- Sucher / Verstecker setzen
-- Rollen-Liveansicht mit `/betterevents roles`
-- Spectator-System mit Teleport
+- Staff-Menues fuer Eventsteuerung
+- Rollenvergabe bei Hide & Seek
+- `/betterevents roles` als Live-Uebersicht
+- Spectator-Menue mit Teleport
 - ForceJoin, Kick, ForceStart und Rollenpruefung
-- klickbare Hide&Seek-Overview fuer Staff
+- Teamler-Untermenues direkt in Uebersichten
 
-### 🏆 Reward-System
+### 🏆 Netzwerkweites Reward-System
 
-- Gewinner-Ansicht
-- Preise-Log mit Reward-Historie
-- Letzte Events mit Dokumentation
-- Pending-Reward-Queue in MySQL
-- Zustellung ueber Hauptserver `Betterattack-3`
-- kein unsauberes lokales Reward-Geben auf dem Event-Server
+- Rewards werden **nicht lokal** auf dem Event-Server vergeben
+- BetterEvents erzeugt nur Pending-Rewards
+- Zustellung erfolgt serveruebergreifend auf `Betterattack-3`
+- MySQL-Queue mit Statuswerten wie:
+  - `PENDING`
+  - `PROCESSING`
+  - `DELIVERED`
+  - `FAILED`
+  - `CANCELLED`
 
-### 🗺️ Event-Map- und Region-Flow
+### 🧱 Map- und Region-Handling
 
-- Spawn-, Spectator-, Lobby- und Event-Locations
-- `Ecke 1` und `Ecke 2` fuer Event-Maps
-- WorldGuard-Region-Erstellung ueber Event-Daten
-- WorldGuard-Flags pro Event in der GUI
+- Lobby-, Spawn-, Spectator- und Event-Spawns
+- `Ecke 1` / `Ecke 2` fuer Eventregionen
+- WorldGuard-Setup ueber GUI
+- WorldGuard-Flags pro Eventmodus
+
+### 🧩 Event Module / Extras System
+
+Optional aktivierbare Module pro Modus:
+
+- `No Player Collisions`
+- `Hide All Players`
+- weitere Module spaeter leicht erweiterbar
+
+---
 
 ## 🎮 Aktive Event-Modi
 
-| Modus | Status | Beschreibung |
+| Modus | Status | Kurzbeschreibung |
 |---|---|---|
-| Hide & Seek | erweitert | Verstecker / Sucher, Shop, Coins, Spectator, Rollenverwaltung |
-| Capture | aktiv | Team-Event mit Flaggen-Flow, Spawns und Teamlogik |
-| Spleef | aktiv | Konfigurierbare Arena, Blockabbau, Runden- und Knockout-Flow |
-| Sumo | aktiv | Duell-/Rundenmodus mit sauberem Respawn- und Spectator-Flow |
-| Parkour | aktiv | Start, Ziel, Checkpoints, Zuschauer-Lobby und Zielerkennung |
+| Capture | aktiv | Zwei Teams, Flaggen-Flow, Teamspawns und Rundenlogik |
+| Spleef | aktiv | Blockabbau, Arena-Regeln und Last-Man-Standing |
+| Sumo | aktiv | Duell-/Rundenmodus mit sauberem Respawn-Flow |
+| Hide & Seek | erweitert | Verstecker, Sucher, Shop, Coins, Spectator, Rollen |
+| Parkour | aktiv | Start, Ziel, Checkpoints und Zuschauer-Flow |
+| Ampel Run | neu | Gruen / Orange / Rot, Reaction-Phasen und Reset-Logik |
+| Teamler sagt | neu | Simon-Says-Stil mit Aufgaben, Zeitfenstern und Elims |
+| HungerGames | neu | Loot, Grace Period, Border und Survival-Flow |
+| Dropper | neu | Fall-Level, Reset-Logik, Zielerkennung und Platzierungen |
 
-## 🧪 Vorbereitete oder geplante Modi
+---
 
-- Spleef
-- Capture
-- SuMo
-- Parkour
-- Hide and Seek
-- Ampel Phasen Run
-- ....
-
-
-## 🧰 Verwendete Systeme und Bibliotheken
-
-| Bibliothek / System | Zweck |
-|---|---|
-| HikariCP | performanter MySQL-Connection-Pool |
-| MySQL | Reward-Queue, Status, serverweite Nachvollziehbarkeit |
-| Velocity | Netzwerk-Routing und Server-Struktur |
-| WorldGuard | Event-Regionen und Flag-Verwaltung |
-| TAB | Scoreboard-/Anzeige-Integration |
-| PlaceholderAPI | Platzhalter fuer Texte und Anzeigen |
-| LuckPerms | Permissions und Teamler-Zugriffe |
-| ExcellentCrates | Crate-Key-Rewards |
-| ItemsAdder | Custom Item-Rewards |
-
-## 🖥️ GUI-Struktur
+## 🖼️ GUI-Konzept
 
 ### Hauptmenue
 
-- Event erstellen
+- Neues Event erstellen
 - Eventliste
-- Config
-- Spieler-Stats
+- Konfiguration
+- Spielerstatistiken
+- Event Module
 
 ### Eventliste
 
-- Event direkt starten
-- Event rechtsklick-basiert bearbeiten
-- Eventdetails oeffnen
+- `Linksklick` startet ein Event
+- `Rechtsklick` oeffnet den Editor
+- Teamler koennen Events direkt aus der Liste verwalten
 
 ### Event-Editor
 
-- Locations
-- Messages
-- Prize
-- Commands
-- Bossbar
-- Options
-- Values
-- Music
-- Scoreboard
-- Kit
-- WorldGuard
+- unterteilt in klare Unterseiten
+- feldgenaue Werte pro Modus
+- Eventbezogene Lores, Materialien und Bedienhinweise
+- Delete-Sicherheitsabfrage beim Entfernen eines Events
 
 ### Reward-Verwaltung
 
 - Gewinner
 - Preise
 - Letzte Events
-- Reward Selection
-- Reward Confirmation
+- Reward-Auswahl
+- Reward-Bestaetigung
+- Status- und Retry-Aktionen
+
+---
+
+## 🌐 Reward-Architektur
+
+BetterEvents fuehrt Rewards **nicht lokal** auf dem Event-Server aus.
+
+### Ablauf
+
+1. Teamler bestaetigt einen Reward im GUI
+2. BetterEvents speichert einen Pending-Reward in MySQL
+3. `BARewardBridge` auf `Betterattack-3` erkennt offene Rewards
+4. Die Zustellung passiert lokal auf dem Zielserver
+5. Spieler erhaelt Chat-Nachricht und Title
+
+### Vorteile
+
+- keine unsauberen Direktvergaben auf dem Event-Server
+- offline-sichere Zustellung
+- klare Fehlergruende und Statuswerte
+- zentrale Dokumentation aller Reward-Aktionen
+
+Weitere Infos:
+
+- [BA3 Reward Bridge README](C:\Users\nick\Documents\New project\ba3-reward-bridge\README.md)
+
+---
+
+## 📦 Reward-Typen
+
+Unterstuetzt werden aktuell unter anderem:
+
+- ExcellentCrates Keys
+  - `/betterkey`
+  - `/legendarykey`
+  - `/boosterkey`
+  - `/möbelkey`
+- Vanilla-Items
+  - Elytra
+  - Dragon Head
+  - Diamanten, Erze, Ingots, Bloecke
+- ItemsAdder-Rewards
+  - strukturierte IA-ID statt rohem Vanilla-Stack
+  - Katalog-/Pack-Auswahl im GUI
+- Custom Commands
+- erweiterbar fuer Coins, Ränge und Permissions
+
+---
+
+## 🔌 Integrationen
+
+| System | Aufgabe |
+|---|---|
+| Velocity | Proxy- und Netzwerkstruktur |
+| MySQL | Reward-Queue, Status, Logs |
+| HikariCP | performanter Connection Pool |
+| WorldGuard | Regionen und Flags |
+| TAB | optionale Anzeige-/Scoreboard-Integration |
+| PlaceholderAPI | Platzhalter in Anzeigen und Texten |
+| LuckPerms | Rechte und Teamler-Zugriffe |
+| ExcellentCrates | Key-Rewards |
+| ItemsAdder | Custom-Item-Rewards |
+
+---
 
 ## ⌨️ Befehle
 
@@ -160,7 +235,7 @@ Der Fokus liegt auf:
 | `/betterevents` | Hauptmenue oeffnen |
 | `/betterevents list` | Eventliste oeffnen |
 | `/betterevents create` | neues Event erstellen |
-| `/betterevents stats` | Stats-Ansicht oeffnen |
+| `/betterevents stats` | Statistikansicht oeffnen |
 
 ### 👤 Spieler
 
@@ -176,58 +251,62 @@ Der Fokus liegt auf:
 
 | Befehl | Beschreibung |
 |---|---|
-| `/betterevents start` | Event regulär starten |
+| `/betterevents start` | Event normal starten |
 | `/betterevents forcestart` | Event zwangsstarten |
 | `/betterevents stop` | laufendes Event stoppen |
 | `/betterevents forcejoin <spieler>` | Spieler ins Event holen |
 | `/betterevents kick <spieler>` | Spieler aus Event entfernen |
 | `/betterevents sucher <spieler>` | Spieler als Sucher setzen |
 | `/betterevents hider <spieler>` | Spieler als Verstecker setzen |
-| `/betterevents roles` | Live-Rollenuebersicht anzeigen |
+| `/betterevents roles` | Live-Rollenuebersicht |
 | `/betterevents reload` | Konfiguration neu laden |
-
-### 🗺️ WorldGuard-Helfer
-
-| Befehl | Beschreibung |
-|---|---|
-| `/betterevents wg region create <name>` | Event-Region fuer die aktuelle Map anlegen |
 
 ### 🏆 Reward-Admin
 
 | Befehl | Beschreibung |
 |---|---|
-| `/betterevents reward status <id>` | Status eines Rewards anzeigen |
-| `/betterevents reward retry <id>` | fehlgeschlagenen Reward erneut anstossen |
+| `/betterevents reward status <id>` | Reward-Status anzeigen |
+| `/betterevents reward retry <id>` | fehlgeschlagenen Reward neu anstoßen |
 | `/betterevents reward cancel <id>` | Reward abbrechen |
+
+### 🗺️ WorldGuard
+
+| Befehl | Beschreibung |
+|---|---|
+| `/betterevents wg region create <name>` | Region fuer das aktuelle Event vorbereiten |
+
+---
 
 ## 🔐 Permissions
 
-### 👤 Spieler
+### Spieler
 
 | Permission | Default | Beschreibung |
 |---|---|---|
-| `betterevents.use` | ✅ Alle | Grundzugriff auf das Plugin |
-| `betterevents.player.menu` | ✅ Alle | Spieler-Menues oeffnen |
+| `betterevents.use` | ✅ Alle | Grundzugriff |
+| `betterevents.player.menu` | ✅ Alle | Menues oeffnen |
 | `betterevents.player.join` | ✅ Alle | Events beitreten |
 | `betterevents.player.leave` | ✅ Alle | Events verlassen |
-| `betterevents.player.spectate` | ✅ Alle | Events spectaten |
-| `betterevents.player.team` | ✅ Alle | Team-/Rollenansicht nutzen |
+| `betterevents.player.spectate` | ✅ Alle | Spectator nutzen |
+| `betterevents.player.team` | ✅ Alle | Team-/Rollenansicht |
 | `betterevents.player.stats` | ✅ Alle | Stats ansehen |
 
-### 🛠️ Teamler
+### Teamler
 
 | Permission | Default | Beschreibung |
 |---|---|---|
-| `betterevents.staff.gui` | OP | GUI-Zugriff fuer Teamler |
+| `betterevents.staff.gui` | OP | GUI-Zugriff |
 | `betterevents.staff.create` | OP | Events erstellen |
 | `betterevents.staff.edit` | OP | Events bearbeiten |
 | `betterevents.staff.start` | OP | Events starten |
-| `betterevents.staff.forcestart` | OP | ForceStart nutzen |
-| `betterevents.staff.stop` | OP | Events stoppen |
-| `betterevents.staff.forcejoin` | OP | ForceJoin nutzen |
-| `betterevents.staff.kick` | OP | Spieler aus Events entfernen |
-| `betterevents.staff.reload` | OP | Config / Plugin neu laden |
-| `betterevents.staff.*` | OP | alle Teamler-Rechte gesammelt |
+| `betterevents.staff.forcestart` | OP | ForceStart |
+| `betterevents.staff.stop` | OP | Event stoppen |
+| `betterevents.staff.forcejoin` | OP | ForceJoin |
+| `betterevents.staff.kick` | OP | Spieler entfernen |
+| `betterevents.staff.reload` | OP | Reload |
+| `betterevents.staff.*` | OP | Sammelrecht |
+
+---
 
 ## 📁 Ordnerstruktur
 
@@ -241,121 +320,62 @@ plugins/BetterEvents/
 
 | Pfad | Bedeutung |
 |---|---|
-| `config.yml` | globale Nachrichten, Prefixe, Features, Delivery- und Anzeigeeinstellungen |
-| `games/` | einzelne Event-Configs pro Arena / Event |
-| `data/` | Daten, Runtime-Infos, interne Stat-Dateien |
+| `config.yml` | globale Nachrichten, Branding, Performance- und Reward-Einstellungen |
+| `games/` | einzelne Eventdateien pro Modus / Arena |
+| `data/` | interne Daten, Statistiken, Laufzeitinformationen |
 | `logs/` | Event- und Reward-Dokumentation |
+
+---
 
 ## ⚙️ Konfiguration
 
-Die Konfiguration ist bewusst in globale und eventbezogene Bereiche getrennt.
+Die Struktur ist bewusst in **globale Defaults** und **eventbezogene Einzeldateien** getrennt.
 
-### Globale Konfiguration
+### Globale Config
+
+- Branding
+- Prefixe und Nachrichten
+- Scoreboard-Defaults
+- Reward-/Database-Struktur
+- HikariCP-Werte
+- Logging und Performance
 
 Datei:
 
-- `plugins/BetterEvents/config.yml`
+- [config.yml](C:\Users\nick\Documents\New project\src\main\resources\config.yml)
 
-Typische Inhalte:
+### Eventdateien
 
-- Branding
-- allgemeine Nachrichten
-- Scoreboard-Defaults
-- Reward-System / MySQL
-- HikariCP-Settings
-- Logging
+Jedes Event liegt separat im `games/`-Ordner und hat eigene:
 
-### Event-Konfigurationen
+- Orte
+- Nachrichten
+- Optionen
+- Werte
+- Rewards
+- WorldGuard-Daten
 
-Ordner:
-
-- `plugins/BetterEvents/games/`
-
-Jedes Event besitzt seine eigene Datei, zum Beispiel:
-
-- `hideseek-1.yml`
-- `spleef-1.yml`
-- `sumo-1.yml`
-- `capture-1.yml`
-- `parkour-1.yml`
-
-## 🌐 Reward-Architektur im Netzwerk
-
-BetterEvents fuehrt Rewards **nicht lokal** auf dem Event-Server aus.
-
-Der Ablauf:
-
-1. Ein Teamler bestaetigt einen Reward in der GUI.
-2. BetterEvents erstellt einen `Pending Reward` in MySQL.
-3. Das Ziel ist der Hauptserver `Betterattack-3`.
-4. Die lokale Zustellung uebernimmt die `BARewardBridge`.
-5. Der Reward bleibt pending, bis der Spieler sauber zugestellt werden kann.
-
-### Rollen im Netzwerk
-
-| Komponente | Aufgabe |
-|---|---|
-| BetterEvents auf Event-Server | Eventverwaltung, Reward-Erstellung |
-| MySQL | zentrale Reward-Queue und Statusspeicher |
-| BARewardBridge auf Betterattack-3 | lokale Reward-Ausfuehrung |
-
-Weitere Infos:
-
-- [BA3 Reward Bridge README](C:\Users\nick\Documents\New%20project\ba3-reward-bridge\README.md)
-
-## 🧠 Features im Detail
-
-### Hide & Seek
-
-- Sucher- und Verstecker-System
-- Staff-Rollenverwaltung
-- Spectator-Spawn
-- Teamler-Overview mit Teleport und Rollenpruefung
-- Shop-System
-- Coins
-- Sucher-Freigabe
-- Eventphasen und passende Scoreboards
-
-### Capture
-
-- 2 Teams
-- Teamspawns
-- Eventstart ueber Lobby-/Join-Flow
-- Flag- und Teamstatus-Mechaniken
-
-### Spleef
-
-- konfigurierbare Arena
-- Blockabbau-Regeln
-- Eventbezogene Spawn- und Spectator-Logik
-- rundenbasierter Last-Man-Standing-Flow
-
-### Sumo
-
-- Arena mit Duell-/Rundencharakter
-- saubere Respawn- und Spectator-Behandlung
-- Eventbezogene Anzeige und Winner-Flow
-
-### Parkour
-
-- Start- und Endpunkt
-- Checkpoints
-- Zuschauer-Lobby
-- Zielerkennung auf der Map
+---
 
 ## 🚀 Installation
 
-1. `BetterEvents.jar` in den `plugins/`-Ordner legen
+1. `BetterEvents.jar` in `plugins/` legen
 2. Server starten
-3. `config.yml`, `games/`, `data/` und `logs/` werden automatisch vorbereitet
-4. Optional:
+3. BetterEvents erstellt automatisch:
+   - `config.yml`
+   - `games/`
+   - `data/`
+   - `logs/`
+4. Optional installieren:
    - WorldGuard
    - PlaceholderAPI
    - LuckPerms
    - TAB
    - ExcellentCrates
    - ItemsAdder
-5. Event-Dateien erstellen oder ueber die GUI anlegen
+5. Events ueber GUI oder Dateien anlegen
+
+---
 
 ## 🏗️ Build
 
@@ -367,23 +387,35 @@ Artefakt:
 
 - `target/BetterEvents-1.0.0.jar`
 
+---
+
 ## 📄 Wichtige Dateien
 
-- [plugin.yml](C:\Users\nick\Documents\New%20project\src\main\resources\plugin.yml)
-- [config.yml](C:\Users\nick\Documents\New%20project\src\main\resources\config.yml)
-- [BetterEventsPlugin.java](C:\Users\nick\Documents\New%20project\src\main\java\de\betterevents\BetterEventsPlugin.java)
-- [EventManager.java](C:\Users\nick\Documents\New%20project\src\main\java\de\betterevents\event\EventManager.java)
-- [GuiController.java](C:\Users\nick\Documents\New%20project\src\main\java\de\betterevents\gui\GuiController.java)
+- [BetterEventsPlugin.java](C:\Users\nick\Documents\New project\src\main\java\de\betterevents\BetterEventsPlugin.java)
+- [EventManager.java](C:\Users\nick\Documents\New project\src\main\java\de\betterevents\event\EventManager.java)
+- [GuiController.java](C:\Users\nick\Documents\New project\src\main\java\de\betterevents\gui\GuiController.java)
+- [config.yml](C:\Users\nick\Documents\New project\src\main\resources\config.yml)
+- [plugin.yml](C:\Users\nick\Documents\New project\src\main\resources\plugin.yml)
 
-## 📈 Status
+---
+
+## 📈 Projektfokus
 
 Der aktuelle Schwerpunkt liegt auf:
 
 - GUI-Qualitaet und Teamler-Bedienung
-- Hide & Seek
+- hochwertige Event-Modi
+- sauberen Spectator- und Rollen-Flows
 - Reward-Queue mit BA3-Bridge
-- sauberen Event- und Spectator-Flows
-- individueller Event-Konfiguration
-- performanter MySQL- und HikariCP-Struktur
+- Performance, HikariCP und MySQL-Stabilitaet
+- modularer Erweiterbarkeit pro Modus
 
-Made for BetterAttack.net
+---
+
+<div align="center">
+
+### Made for BetterAttack.net
+
+Premium Events fuer ein modernes Velocity-Netzwerk.
+
+</div>
