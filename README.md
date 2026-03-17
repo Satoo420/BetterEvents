@@ -5,7 +5,7 @@
 ### Premium Event Framework fuer BetterAttack.net
 
 Modulares Minecraft-Eventplugin fuer Paper `1.21.x`, Java `21+` und Velocity-Netzwerke  
-mit Ingame-GUIs, Event-Editor, Spectator-System, Reward-Queue und BetterAttack-Stil.
+mit Ingame-GUIs, Event-Editor, Live-Uebersichten, Event-Modulen und serveruebergreifendem Reward-System.
 
 <p>
   <img alt="Platform" src="https://img.shields.io/badge/Paper-1.21.x-ff77c8?style=for-the-badge&labelColor=1a1325">
@@ -28,7 +28,7 @@ mit Ingame-GUIs, Event-Editor, Spectator-System, Reward-Queue und BetterAttack-S
 | 🌐 Website | `betterattack.shop` |
 | ⚙️ Plattform | Paper `1.21.x` · Java `21+` |
 | 🌍 Proxy | Velocity |
-| 🧩 Softdepends | WorldGuard, PlaceholderAPI, LuckPerms, TAB, ExcellentCrates, ItemsAdder |
+| 🧩 Softdepends | WorldGuard, ItemsAdder |
 | 💾 Datenhaltung | YAML + MySQL + HikariCP |
 
 ---
@@ -36,16 +36,16 @@ mit Ingame-GUIs, Event-Editor, Spectator-System, Reward-Queue und BetterAttack-S
 ## 🧩 Was ist BetterEvents?
 
 **BetterEvents** ist das zentrale Event-Framework fuer euren Event-Server.  
-Das Plugin erlaubt Teamlern, Events komplett **ingame** zu erstellen, zu bearbeiten, zu starten, zu beobachten und inklusive Rewards zu dokumentieren, ohne direkt im Dateisystem arbeiten zu muessen.
+Teamler koennen Events komplett **ingame** erstellen, bearbeiten, starten, verwalten, spectaten und inklusive Rewards dokumentieren, ohne direkt im Dateisystem arbeiten zu muessen.
 
 Der Fokus liegt auf:
 
-- hochwertigen Inventar-GUIs
-- deutscher, einheitlicher BetterAttack-Optik
-- modularen Eventkonfigurationen pro Spielmodus
-- nativen Spectator-, Join-, Leave- und Staff-Flows
+- hochwertigen Inventar-GUIs im BetterAttack-Stil
+- klaren Event-spezifischen Editor-Unterseiten
+- stabilen Runtime-Flows fuer Join, Leave, Spectator und Staff
+- modularer Event-Erweiterbarkeit
 - sauberer Velocity-/MySQL-Reward-Architektur
-- skalierbarer und performanter Serverstruktur
+- performanter und erweiterbarer Serverstruktur
 
 ---
 
@@ -54,8 +54,9 @@ Der Fokus liegt auf:
 ### 🎛️ Ingame Event Management
 
 - `/betterevents` als zentrales Hauptmenue
-- Event erstellen, bearbeiten, starten, stoppen
+- Event erstellen, bearbeiten, starten und stoppen
 - Eventliste mit Direktaktionen
+- zentrale Live-Uebersicht aller aktiven Events
 - komplette Config-Unterseiten pro Modus
 - Werte direkt per Klick anpassbar
 - Reward-Verwaltung direkt ueber GUI
@@ -78,12 +79,20 @@ Jedes Event ist in saubere Bereiche unterteilt:
 
 ### 👥 Teamler-Workflow
 
-- Staff-Menues fuer Eventsteuerung
-- Rollenvergabe bei Hide & Seek
-- `/betterevents roles` als Live-Uebersicht
+- Staff-Menues fuer Start, Stop, ForceJoin, Kick und Live-Steuerung
+- Event-Live-Seiten pro Modus
 - Spectator-Menue mit Teleport
-- ForceJoin, Kick, ForceStart und Rollenpruefung
-- Teamler-Untermenues direkt in Uebersichten
+- Rollensystem fuer Hide & Seek
+- Teamwahl fuer Capture in der Lobby
+- klare Live-Statusanzeigen fuer Teamler
+
+### 🧩 Event Module / Extras System
+
+Optional aktivierbare Module pro Eventmodus:
+
+- `No Player Collisions`
+- `Hide All Players`
+- weitere Module spaeter leicht erweiterbar
 
 ### 🏆 Netzwerkweites Reward-System
 
@@ -97,20 +106,14 @@ Jedes Event ist in saubere Bereiche unterteilt:
   - `FAILED`
   - `CANCELLED`
 
-### 🧱 Map- und Region-Handling
+### 🧱 Map-, Region- und Runtime-Handling
 
-- Lobby-, Spawn-, Spectator- und Event-Spawns
+- Lobby-, Spawn-, Spectator- und Modus-Spawns
 - `Ecke 1` / `Ecke 2` fuer Eventregionen
 - WorldGuard-Setup ueber GUI
-- WorldGuard-Flags pro Eventmodus
-
-### 🧩 Event Module / Extras System
-
-Optional aktivierbare Module pro Modus:
-
-- `No Player Collisions`
-- `Hide All Players`
-- weitere Module spaeter leicht erweiterbar
+- WorldGuard-Flags pro Event
+- strukturierte Capture-Flaggenlogik
+- mehrstufige Dropper-Stages
 
 ---
 
@@ -118,15 +121,15 @@ Optional aktivierbare Module pro Modus:
 
 | Modus | Status | Kurzbeschreibung |
 |---|---|---|
-| Capture | aktiv | Zwei Teams, Flaggen-Flow, Teamspawns und Rundenlogik |
+| Capture | stark erweitert | Team-CTF mit Flaggenstatus, Teamspawns, Respawn, Shop, Carrier-Debuffs, Return-Timer und Capture-Live-Flow |
 | Spleef | aktiv | Blockabbau, Arena-Regeln und Last-Man-Standing |
 | Sumo | aktiv | Duell-/Rundenmodus mit sauberem Respawn-Flow |
-| Hide & Seek | erweitert | Verstecker, Sucher, Shop, Coins, Spectator, Rollen |
+| Hide & Seek | stark erweitert | Sucher, Verstecker, Coins, Shop, Border, Rollen, Spezialevents und Live-Menues |
 | Parkour | aktiv | Start, Ziel, Checkpoints und Zuschauer-Flow |
-| Ampel Run | neu | Gruen / Orange / Rot, Reaction-Phasen und Reset-Logik |
-| Teamler sagt | neu | Simon-Says-Stil mit Aufgaben, Zeitfenstern und Elims |
-| HungerGames | neu | Loot, Grace Period, Border und Survival-Flow |
-| Dropper | neu | Fall-Level, Reset-Logik, Zielerkennung und Platzierungen |
+| Ampel Run | integriert | Gruen / Orange / Rot, Reaction-Phasen, Hotbar-Ampel und Reset-Logik |
+| Teamler sagt | integriert | Simon-Says-Stil mit Aufgaben, Zeitfenstern und Elims |
+| HungerGames | integriert | Loot, Grace Period, Border und Survival-Flow |
+| Dropper | stark erweitert | Multi-Stage Dropper mit 1 bis 5 Maps, Stage-Fortschritt, Retries und Platzierungen |
 
 ---
 
@@ -139,6 +142,7 @@ Optional aktivierbare Module pro Modus:
 - Konfiguration
 - Spielerstatistiken
 - Event Module
+- Live-Uebersicht
 
 ### Eventliste
 
@@ -153,6 +157,17 @@ Optional aktivierbare Module pro Modus:
 - Eventbezogene Lores, Materialien und Bedienhinweise
 - Delete-Sicherheitsabfrage beim Entfernen eines Events
 
+### Live-GUIs
+
+- zentrale Live-Uebersicht in `/betterevents`
+- Detailseiten fuer:
+  - Hide & Seek
+  - Capture
+  - Ampel Run
+  - HungerGames
+  - Teamler sagt
+  - Dropper
+
 ### Reward-Verwaltung
 
 - Gewinner
@@ -161,6 +176,56 @@ Optional aktivierbare Module pro Modus:
 - Reward-Auswahl
 - Reward-Bestaetigung
 - Status- und Retry-Aktionen
+
+---
+
+## 🏁 Modus-Highlights
+
+### 🟥 Capture
+
+- klare Rot-/Blau-Teamstruktur
+- getrennte Team-Spawns, Flaggenbasen und Capture-Zonen
+- Flaggenstatus:
+  - `AT_BASE`
+  - `TAKEN`
+  - `DROPPED`
+  - `RETURNING`
+- Lobby-Teamauswahl mit fairer Random-Verteilung beim Start
+- Capture-Shop mit persoehnlicher Kill-/Assist-Waehrung
+- Respawn-System mit Spawn-Protection
+- Grace-Barrier und Capture-Kit-Flow
+- Capture-Live-GUI, Capture-Bossbar und eigenes Scoreboard
+
+### 👀 Hide & Seek
+
+- Sucher-/Verstecker-Rollen
+- PlayerOverview und Live-Menues
+- Sucher-Freigabe mit Countdown / Titles / Sound
+- Border- und Shrink-System
+- Hider-/Seeker-Special-Events
+- Reward- und Coin-Logik
+- Staff-Live-Menues im BetterAttack-Stil
+
+### 💧 Dropper
+
+- 1 bis 5 Stages pro Event
+- eigene Stage-Verwaltung im Editor
+- pro Stage:
+  - Spawn
+  - Finish-Zone
+  - Death-Height
+  - Spectator-Spawn
+  - Difficulty
+  - Display-Name
+- Ranking nach Stage-Fortschritt, Zeit und Fails
+
+### 🚦 Ampel Run
+
+- Gruen / Orange / Rot Phasen
+- komplette Ampel-Hotbar
+- Movement-Checks bei Rot
+- Reset statt Elim bei Verstoessen
+- Bossbar, Actionbar, Title und Sound
 
 ---
 
@@ -186,7 +251,6 @@ BetterEvents fuehrt Rewards **nicht lokal** auf dem Event-Server aus.
 Weitere Infos:
 
 - [BA3 Reward Bridge README]
-
 ---
 
 ## 📦 Reward-Typen
@@ -194,10 +258,10 @@ Weitere Infos:
 Unterstuetzt werden aktuell unter anderem:
 
 - ExcellentCrates Keys
-  - `/betterkey`
-  - `/legendarykey`
-  - `/boosterkey`
-  - `/möbelkey`
+  - `BetterKey`
+  - `BoosterKey`
+  - `Legendary Key`
+  - `Möbel Key`
 - Vanilla-Items
   - Elytra
   - Dragon Head
@@ -205,6 +269,7 @@ Unterstuetzt werden aktuell unter anderem:
 - ItemsAdder-Rewards
   - strukturierte IA-ID statt rohem Vanilla-Stack
   - Katalog-/Pack-Auswahl im GUI
+  - Pack-/Item-Vorschau
 - Custom Commands
 - erweiterbar fuer Coins, Ränge und Permissions
 
@@ -218,11 +283,11 @@ Unterstuetzt werden aktuell unter anderem:
 | MySQL | Reward-Queue, Status, Logs |
 | HikariCP | performanter Connection Pool |
 | WorldGuard | Regionen und Flags |
-| TAB | optionale Anzeige-/Scoreboard-Integration |
 | PlaceholderAPI | Platzhalter in Anzeigen und Texten |
 | LuckPerms | Rechte und Teamler-Zugriffe |
 | ExcellentCrates | Key-Rewards |
 | ItemsAdder | Custom-Item-Rewards |
+| SunLight / externe Scoreboards | Serverweites Scoreboard, das BetterEvents pro Eventmodus bewusst uebersteuert |
 
 ---
 
@@ -236,6 +301,7 @@ Unterstuetzt werden aktuell unter anderem:
 | `/betterevents list` | Eventliste oeffnen |
 | `/betterevents create` | neues Event erstellen |
 | `/betterevents stats` | Statistikansicht oeffnen |
+| `/betterevents live` | Live-Uebersicht aktiver Events |
 
 ### 👤 Spieler
 
@@ -266,14 +332,8 @@ Unterstuetzt werden aktuell unter anderem:
 | Befehl | Beschreibung |
 |---|---|
 | `/betterevents reward status <id>` | Reward-Status anzeigen |
-| `/betterevents reward retry <id>` | fehlgeschlagenen Reward neu anstoßen |
+| `/betterevents reward retry <id>` | fehlgeschlagenen Reward neu anstossen |
 | `/betterevents reward cancel <id>` | Reward abbrechen |
-
-### 🗺️ WorldGuard
-
-| Befehl | Beschreibung |
-|---|---|
-| `/betterevents wg region create <name>` | Region fuer das aktuelle Event vorbereiten |
 
 ---
 
@@ -355,6 +415,12 @@ Jedes Event liegt separat im `games/`-Ordner und hat eigene:
 - Rewards
 - WorldGuard-Daten
 
+### Modul-Config
+
+Die Extras / Module werden zusaetzlich ueber eine eigene Datei verwaltet:
+
+- `modules.yml`
+
 ---
 
 ## 🚀 Installation
@@ -370,10 +436,8 @@ Jedes Event liegt separat im `games/`-Ordner und hat eigene:
    - WorldGuard
    - PlaceholderAPI
    - LuckPerms
-   - TAB
-   - ExcellentCrates
    - ItemsAdder
-5. Events ueber GUI oder Dateien anlegen
+5. Rewards auf Netzwerkinstallation mit `BARewardBridge` abstimmen
 
 ---
 
@@ -394,9 +458,9 @@ Artefakt:
 - [BetterEventsPlugin.java]
 - [EventManager.java]
 - [GuiController.java]
+- [ConfigManager.java]
 - [config.yml]
 - [plugin.yml]
-
 ---
 
 ## 📈 Projektfokus
@@ -405,7 +469,8 @@ Der aktuelle Schwerpunkt liegt auf:
 
 - GUI-Qualitaet und Teamler-Bedienung
 - hochwertige Event-Modi
-- sauberen Spectator- und Rollen-Flows
+- Capture-Stabilitaet und CTF-Flow
+- Multi-Stage Dropper
 - Reward-Queue mit BA3-Bridge
 - Performance, HikariCP und MySQL-Stabilitaet
 - modularer Erweiterbarkeit pro Modus
